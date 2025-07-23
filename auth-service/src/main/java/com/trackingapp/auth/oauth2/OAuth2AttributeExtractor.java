@@ -1,7 +1,9 @@
 package com.trackingapp.auth.oauth2;
 
-public interface OAuthUserInfo {
-    String getEmail();
-    String getName();
-    String getProviderId();
+import org.springframework.security.oauth2.core.user.OAuth2User;
+
+public interface OAuth2AttributeExtractor {
+    String extractEmail(OAuth2User oAuth2User);
+    String extractName(OAuth2User oAuth2User);
+    String getProvider();
 }

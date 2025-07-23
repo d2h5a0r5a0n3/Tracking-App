@@ -1,13 +1,13 @@
-package com.trackingapp.auth.oauth2;
+package com.trackingapp.auth.oauth2.extractors;
 
+import com.trackingapp.auth.oauth2.OAuth2AttributeExtractor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
 public class GitHubAttributeExtractor implements OAuth2AttributeExtractor {
-    private final OAuth2User oAuth2User;
+    private OAuth2User oAuth2User;
 
     @Override
     public String extractEmail(OAuth2User oAuth2User) {
