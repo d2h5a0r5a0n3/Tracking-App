@@ -3,7 +3,6 @@ package com.trackingapp.auth.security;
 import com.trackingapp.auth.model.User;
 import com.trackingapp.auth.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
