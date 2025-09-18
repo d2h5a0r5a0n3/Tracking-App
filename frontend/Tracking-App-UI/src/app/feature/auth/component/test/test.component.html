@@ -1,0 +1,27 @@
+<p>test works!</p>
+
+<div *ngIf="status && isStatus(status)">
+    <p>Username: {{ status.username }}</p>
+    <p>Authenticated: {{ status.authenticated }}</p>
+</div>
+
+<div *ngIf="status && isError(status)">
+    <p>Error: {{ status.error }}</p>
+    <p>Message: {{ status.message }}</p>
+    <p>Status Code: {{ status.status }}</p>
+    <p>Path: {{status.path}}</p>
+</div>
+
+<hr />
+
+
+<div *ngIf="welcome && isString(welcome.message)">
+    <p>Welcome: {{ welcome.message }}</p>
+</div>
+
+<div *ngIf="welcome && isError(welcome)">
+    <p>Error: {{ welcome.error }}</p>
+    <p>Message: {{ welcome.message }}</p>
+    <p>Status Code: {{ welcome.status }}</p>
+    <p>Path: {{welcome.path}}</p>
+</div>
