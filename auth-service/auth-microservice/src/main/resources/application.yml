@@ -1,0 +1,27 @@
+server:
+  port: 8089
+spring:
+  application:
+    name: "auth-microservice"
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tracking-app-auth-db
+    username: tracking-app-auth-user
+    password: tracking-app-auth-password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: false
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE

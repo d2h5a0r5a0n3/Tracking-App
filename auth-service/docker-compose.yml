@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: tracking-app-auth-db
+    environment:
+      POSTGRES_DB: tracking-app-auth-db
+      POSTGRES_USER: tracking-app-auth-user
+      POSTGRES_PASSWORD: tracking-app-auth-password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - auth-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tracking-app-auth-user -d tra cking-app-auth-db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  auth-service:
+    build: .
+    container_name: auth-microservice
+    ports:
+      - "8089:8089"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/tracking-app-auth-db
+      SPRING_DATASOURCE_USERNAME: tracking-app-auth-user
+      SPRING_DATASOURCE_PASSWORD: tracking-app-auth-password
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: "true"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - auth-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  auth-network:
+    driver: bridge
