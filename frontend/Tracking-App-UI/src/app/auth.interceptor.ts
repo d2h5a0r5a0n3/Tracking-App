@@ -1,11 +1,10 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-    const username = localStorage.getItem('username');
-    const password = localStorage.getItem('password');
+    const auth = localStorage.getItem('auth');
 
-    if(username && password){
-        const basicAuthHeader='Basic '+btoa(username+':'+password);
+    if(auth){
+        const basicAuthHeader=`Basic ${auth}`; 
 
         const authReq=req.clone(
             {
